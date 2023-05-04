@@ -1,4 +1,4 @@
-# Numerical_Calculation_Methods
+# Numerical method and its implementation
 计算方法及其C++实现
 包括：
 1. 二分法
