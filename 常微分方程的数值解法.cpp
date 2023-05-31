@@ -1,4 +1,4 @@
-// ³£Î¢·Ö·½³ÌµÄÊýÖµ½â·¨
+// å¸¸å¾®åˆ†æ–¹ç¨‹çš„æ•°å€¼è§£æ³•
 
  
 #include<bits/stdc++.h>
@@ -10,40 +10,40 @@ double x[10];
 double y[10];
 double res[10];
 
-double f(double x,double y)// f(x,y), x¶¨ÒåÓòÎª[0£¬1] 
+double f(double x,double y)// f(x,y), xå®šä¹‰åŸŸä¸º[0ï¼Œ1] 
 {
 	return 2.0/3*x/(y*y);
 }
 
-double g(double x)
+double g(double x)// å¾®åˆ†æ–¹ç¨‹çš„è§£ 
 {
 	return pow((1+x*x), 3/2.0);
 }
 
-void Euler()// Å·À­·½·¨, y_i+1=y_i+h*f(x_i,y_i)
+void Euler()// æ¬§æ‹‰æ–¹æ³•, y_i+1=y_i+h*f(x_i,y_i)
 {
 	for(int i=0;i<10;i++)
 	{
 		y[i+1]=y[i]+h*f(x[i],y[i]); 
 	} 
 	
-	cout<<"Ê¹ÓÃÅ·À­·½·¨£º"<<endl;
+	cout<<"ä½¿ç”¨æ¬§æ‹‰æ–¹æ³•ï¼š"<<endl;
 	for(int i=0;i<10;i++) cout<<fixed<<setprecision(5)<<y[i]<<"   ";
 	cout<<endl;
 } 
 
-void EulerPro()// ¸Ä½øÅ·À­·½·¨, Êé P159Ò³, ¹«Ê½(6.11)
+void EulerPro()// æ”¹è¿›æ¬§æ‹‰æ–¹æ³•, ä¹¦ P159é¡µ, å…¬å¼(6.11)
 {
 	for(int i=0;i<10;i++)
 	{
 		y[i+1]=y[i]+h/2*(f(x[i],y[i])+f(x[i+1],y[i]+h*f(x[i],y[i])));
 	} 
-	cout<<"Ê¹ÓÃ¸Ä½øÅ·À­·½·¨£º"<<endl;
+	cout<<"ä½¿ç”¨æ”¹è¿›æ¬§æ‹‰æ–¹æ³•ï¼š"<<endl;
 	for(int i=0;i<10;i++) cout<<fixed<<setprecision(5)<<y[i]<<"   ";
 	cout<<endl;
 }
 
-void RK()// ¾­µäRK·¨£¬Êé P163Ò³, ¹«Ê½(6.21) 
+void RK()// ç»å…¸RKæ³•ï¼Œä¹¦ P163é¡µ, å…¬å¼(6.21) 
 {
 	for(int i=0;i<10;i++)
 	{
@@ -54,12 +54,12 @@ void RK()// ¾­µäRK·¨£¬Êé P163Ò³, ¹«Ê½(6.21)
 		y[i+1]=y[i]+h/6*(K1+2*K2+2*K3+K4);
 	}
 	
-	cout<<"Ê¹ÓÃ¾­µäR-K·¨£º"<<endl;
+	cout<<"ä½¿ç”¨ç»å…¸R-Kæ³•ï¼š"<<endl;
 	for(int i=0;i<10;i++) cout<<fixed<<setprecision(5)<<y[i]<<"   ";
 	cout<<endl;
 } 
 
-double evaluate()
+double evaluate()// ç”¨å‡æ–¹è¯¯å·®è¯„ä¼°æ‹Ÿåˆç¨‹åº¦ 
 {
 	double error=0;
 	for(int i=0;i<10;i++)
@@ -67,12 +67,12 @@ double evaluate()
 		error=error+(res[i]-y[i])*(res[i]-y[i]);
 	}
 	error=error/10; 
-	cout<<"¾ù·½Îó²îÎª"<<error<<endl<<endl;
+	cout<<"å‡æ–¹è¯¯å·®ä¸º"<<error<<endl<<endl;
 }
 
 int main()
 {
-	y[0]=1;
+	y[0]=1;// åˆå€¼æ¡ä»¶(å·²çŸ¥) 
 	for(int i=0;i<10;i++) res[i]=g(x[i]);
 	
 	for(int i=0;i<10;i++)
@@ -80,15 +80,15 @@ int main()
 		x[i]=i*h;
 	}
 	
-	// Å·À­·½·¨ 
+	// æ¬§æ‹‰æ–¹æ³• 
 	Euler();
 	evaluate();
 	
-	// ¸Ä½øÅ·À­·½·¨ 
+	// æ”¹è¿›æ¬§æ‹‰æ–¹æ³• 
 	EulerPro();
 	evaluate();
 	
-	// ¾­µäR-K·¨ 
+	// ç»å…¸R-Kæ³• 
 	RK();
 	evaluate(); 
 	
